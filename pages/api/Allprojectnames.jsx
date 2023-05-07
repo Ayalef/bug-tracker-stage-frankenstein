@@ -15,7 +15,7 @@ handler.get((req, res) => {
   connection.connect();
 
   // Query the database for all bugs
-  const query = `SELECT * FROM bugs`;
+  const query = `SELECT id_proyecto , nombre_proyecto FROM proyectos`;
   connection.query(query, function (error, results, fields) {
     if (error) {
       console.log(error);

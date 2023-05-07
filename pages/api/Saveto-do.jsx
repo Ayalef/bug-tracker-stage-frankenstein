@@ -13,14 +13,14 @@ handler.post((req, res) => {
 
   connection.connect();
 
-  const { name, type, description } = req.body;
+  const { name, fecha, descripcion , idproyecto } = req.body;
 
-  if (!name || !type || !description) {
+  if (!name || !fecha || !descripcion || !idproyecto) {
     res.status(400).json({ message: 'Missing required fields' });
     return;
   }
 
-  const query = `INSERT INTO bugs (name, type, description) VALUES ('${name}', '${type}', '${description}')`;
+  const query = `INSERT INTO todo ( nombre_todo, fecha , descripcion , id_proyecto ) VALUES ('${name}', '${fecha}', '${descripcion}' , '${idproyecto}')`;
 
   connection.query(query, function (error, results, fields) {
     if (error) {
@@ -28,7 +28,7 @@ handler.post((req, res) => {
       res.status(500).json({ message: 'Internal server error' });
     } else {
       console.log('Bug created successfully');
-      res.status(200).json({ message: 'Bug created successfully' });
+      res.status(200).json({ message: 'todo created successfully' });
     }
   });
 
